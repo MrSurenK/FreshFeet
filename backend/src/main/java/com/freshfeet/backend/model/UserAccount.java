@@ -12,6 +12,10 @@ public class UserAccount {
     private String id;
 
     private String name;
+    @Lob
+    @Column(name="display_pic", length=1000)
+    private byte[] displayPic;
+
 
     public String getName() {
         return name;
@@ -21,5 +25,12 @@ public class UserAccount {
         this.name = name;
     }
 
+    public byte[] getDisplayPic(){
+        return this.displayPic;
+    }
+
+    public void setDisplayPic(byte[] displayPic){
+        this.displayPic = displayPic;
+    }
 
 }
