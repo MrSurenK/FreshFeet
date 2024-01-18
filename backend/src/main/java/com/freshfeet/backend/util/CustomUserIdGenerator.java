@@ -1,4 +1,4 @@
-package com.freshfeet.backend.model;
+package com.freshfeet.backend.util;
 
 import org.hibernate.boot.model.relational.Sequence;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;

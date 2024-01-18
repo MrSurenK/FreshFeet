@@ -1,5 +1,6 @@
 package com.freshfeet.backend.model;
 
+import com.freshfeet.backend.util.CustomUserId;
 import jakarta.persistence.*;
 
 
@@ -12,12 +13,12 @@ public class UserAccount {
 
     private String name;
 
-    public void setName(String name){
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
-    public String getName(){
-        return name;
+    public void setName(String name){
+        this.name = name;
     }
 
 

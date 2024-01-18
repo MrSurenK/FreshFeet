@@ -1,12 +1,11 @@
-package com.freshfeet.backend.model;
+package com.freshfeet.backend.util;
 
+import com.freshfeet.backend.util.CustomUserIdGenerator;
 import org.hibernate.annotations.IdGeneratorType;
 import org.hibernate.id.enhanced.Optimizer;
 
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.reflect.Method;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
