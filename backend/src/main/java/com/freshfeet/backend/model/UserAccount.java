@@ -13,7 +13,7 @@ public class UserAccount {
 
     private String name;
     @Lob
-    @Column(name="display_pic", length=1000)
+    @Column(name="display_pic", columnDefinition = "LONGBLOB")
     private byte[] displayPic;
 
 

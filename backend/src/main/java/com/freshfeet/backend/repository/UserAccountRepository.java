@@ -7,5 +7,5 @@ import java.util.Optional;
 
 
 public interface UserAccountRepository extends CrudRepository<UserAccount, String>{
-        Optional<UserAccount> findByName(String name);
+
     }
