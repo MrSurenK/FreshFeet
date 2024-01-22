@@ -33,7 +33,6 @@ public class UserAccount {
 
     private boolean is_active;
 
-
     public String getName() {
         return this.name;
     }
