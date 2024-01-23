@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class UserAccount {
@@ -13,10 +14,15 @@ public class UserAccount {
     @CustomUserId(name ="userid_seq") // userid sequence for custom unique id generation
     private String id;
 
+    @OneToMany(mappedBy=UserAddress_.USERACCOUNT)
+    List<UserAddress> userAddress;
+
     private String name;
 
+    @Basic(optional = false)
     private String email;
 
+    @Basic(optional = false)
     private String password;   // Password has no getter as a precautionary security measure
 
     @Lob // Wrapper for blob datatype to store images
@@ -29,9 +35,9 @@ public class UserAccount {
 
     private String contactNo;
 
-     private String role;
+     private String role; // ToDo: remember to assign a role based on email domain
 
-    private boolean is_active;
+    private boolean is_active; //ToDo: Give a default true to all new accounts
 
     public String getName() {
         return this.name;
