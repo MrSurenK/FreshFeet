@@ -11,12 +11,12 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @IdGeneratorType(CustomIdGenerator.class)
-@Target({METHOD, FIELD})
+@Target({METHOD, FIELD}) //Remove method
 @Retention(RUNTIME)
 public @interface CustomId {
 
     String name();
-    String prefix();
+    String prefix(); //Make it mandatory in annotation
     int startWith() default 1;
     int incrementBy() default 1;
     Class<? extends Optimizer>optimizer() default Optimizer.class;

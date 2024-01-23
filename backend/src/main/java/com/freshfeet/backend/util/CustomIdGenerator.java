@@ -15,8 +15,8 @@ public class CustomIdGenerator implements IdentifierGenerator {
             SharedSessionContractImplementor session,
             Object object
     ){
-        String prefix = "prefix_"; //Default prefix
-
+        String prefix = "prefix_"; //Default prefix (See if it works if I remove this)
+        //https://www.youtube.com/watch?v=DkZr7_c9ry8&t=208s
         //Loop through all fields to find the one with custom annotation
         for (Field field: object.getClass().getDeclaredFields()){
             field.setAccessible(true); // Needed to access private field
