@@ -2,7 +2,6 @@ package com.freshfeet.backend.model;
 
 import com.freshfeet.backend.util.CustomUserId;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,8 +13,8 @@ public class UserAccount {
     @CustomUserId(name ="userid_seq") // userid sequence for custom unique id generation
     private String id;
 
-    @OneToMany(mappedBy=UserAddress_.USERACCOUNT)
-    List<UserAddress> userAddress;
+    @OneToMany(mappedBy="userAccount")
+    List<UserAddress> userAddresses;
 
     private String name;
 
