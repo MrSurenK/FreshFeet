@@ -1,6 +1,6 @@
 package com.freshfeet.backend.model;
 
-import com.freshfeet.backend.util.CustomUserId;
+import com.freshfeet.backend.util.CustomId;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,18 +10,18 @@ import java.util.List;
 public class UserAccount {
 
     @Id
-    @CustomUserId(name ="userid_seq") // userid sequence for custom unique id generation
+    @CustomId(name ="userid_seq", prefix="usertest_") // userid sequence for custom unique id generation
     private String id;
 
-    @OneToMany(mappedBy="userAccount")
-    List<UserAddress> userAddresses;
+//    @OneToMany(mappedBy="userAccount")
+//    List<UserAddress> userAddresses;
 
     private String name;
 
-    @Basic(optional = false)
+//    @Basic(optional = false)
     private String email;
 
-    @Basic(optional = false)
+//    @Basic(optional = false)
     private String password;   // Password has no getter as a precautionary security measure
 
     @Lob // Wrapper for blob datatype to store images
