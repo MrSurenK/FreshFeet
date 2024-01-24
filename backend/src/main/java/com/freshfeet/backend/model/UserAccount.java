@@ -15,7 +15,7 @@ public class UserAccount {
     @CustomId(name ="userid_seq", prefix="user_") // userid sequence for custom unique id generation
     private String userId;
 
-    @OneToMany(mappedBy=UserAddress_.USERACCOUNT) // One user can store many addresses
+    @OneToMany(mappedBy=UserAddress_.USER_ACCOUNT) // One user can store many addresses
     List<UserAddress> userAddresses;
 
     private String name;

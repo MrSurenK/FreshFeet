@@ -2,6 +2,8 @@ package com.freshfeet.backend.util;
 
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
+import org.hibernate.metamodel.spi.MetamodelImplementor;
+import org.hibernate.persister.entity.EntityPersister;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -11,6 +13,9 @@ import java.util.stream.Collectors;
 public class CustomIdGenerator implements IdentifierGenerator {
 
     private String prefix;
+    private String tableName;
+
+
 
     @Override
     public Serializable generate(
@@ -29,7 +34,8 @@ public class CustomIdGenerator implements IdentifierGenerator {
             }
         }
 
-        String sql = "SELECT max(id) FROM user_account";
+
+        String sql = "SELECT max(user_id) FROM user_account";
         Object result = session.createNativeQuery(sql, String.class).uniqueResult();
 
         int nextId = 1;
