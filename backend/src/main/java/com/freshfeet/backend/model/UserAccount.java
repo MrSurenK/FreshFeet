@@ -6,15 +6,17 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+
+
 @Entity
 public class UserAccount {
 
     @Id
-    @CustomId(name ="userid_seq", prefix="usertest_") // userid sequence for custom unique id generation
-    private String id;
+    @CustomId(name ="userid_seq", prefix="user_") // userid sequence for custom unique id generation
+    private String userId;
 
-//    @OneToMany(mappedBy="userAccount")
-//    List<UserAddress> userAddresses;
+    @OneToMany(mappedBy=UserAddress_.USERACCOUNT) // One user can store many addresses
+    List<UserAddress> userAddresses;
 
     private String name;
 
@@ -22,7 +24,8 @@ public class UserAccount {
     private String email;
 
 //    @Basic(optional = false)
-    private String password;   // Password has no getter as a precautionary security measure
+//    ToDo: Before creating APIs, ensure Spring Security is configured and password is hashed with Bcrypt
+    private String password; // Password has no getter as a precautionary security measure
 
     @Lob // Wrapper for blob datatype to store images
     @Column(name="display_pic", columnDefinition = "LONGBLOB")
@@ -34,9 +37,10 @@ public class UserAccount {
 
     private String contactNo;
 
-     private String role; // ToDo: remember to assign a role based on email domain
+     private String role; // Assign a role based on email domain
 
-    private boolean is_active; //ToDo: Give a default true to all new accounts
+    @Column(nullable=false)
+    private boolean is_active = true;
 
     public String getName() {
         return this.name;

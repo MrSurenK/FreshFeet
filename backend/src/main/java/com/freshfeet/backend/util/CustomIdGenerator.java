@@ -10,12 +10,14 @@ import java.util.stream.Collectors;
 
 public class CustomIdGenerator implements IdentifierGenerator {
 
+    private String prefix;
+
     @Override
     public Serializable generate(
             SharedSessionContractImplementor session,
             Object object
     ){
-        String prefix = "prefix_"; //Default prefix (See if it works if I remove this)
+
         //https://www.youtube.com/watch?v=DkZr7_c9ry8&t=208s
         //Loop through all fields to find the one with custom annotation
         for (Field field: object.getClass().getDeclaredFields()){
