@@ -1,13 +1,12 @@
 package com.freshfeet.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import org.springframework.data.util.Lazy;
 
 
 import java.util.Set;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -18,6 +17,10 @@ public class Address {
 
     @OneToMany(mappedBy = UserAddress_.ADDRESS)
     private Set<UserAddress> userAddress;
+
+    @ManyToOne(fetch=LAZY)
+    @JoinColumn(name="countryId", foreignKey = @ForeignKey(name="FK_Address_country_id"))
+    private Country country;
 
     private int unitNumber;
 
