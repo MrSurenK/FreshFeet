@@ -1,6 +1,6 @@
 package com.freshfeet.backend.model;
 
-import com.freshfeet.backend.util.CustomId;
+import com.freshfeet.backend.util.CustomUserId;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -12,7 +12,7 @@ import java.util.List;
 public class UserAccount {
 
     @Id
-    @CustomId(name ="userid_seq", prefix="user_") // userid sequence for custom unique id generation
+    @CustomUserId(name ="userid_seq", prefix="user_") // userid sequence for custom unique id generation
     private String userId;
 
     @OneToMany(mappedBy=UserAddress_.USER_ACCOUNT) // One user can store many addresses
