@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class ProductItem {
 
     @Id
-    private String SKU; // SKU is the natural Id for product item table
+    private String SKU; // SKU is the natural id for product item table
 
     private Integer qtyInStock;
 
