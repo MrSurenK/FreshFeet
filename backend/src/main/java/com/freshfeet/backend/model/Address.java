@@ -19,7 +19,7 @@ public class Address {
     private Set<UserAddress> userAddress;
 
     @ManyToOne(fetch=LAZY)
-    @JoinColumn(name="countryId", foreignKey = @ForeignKey(name="FK_Address_country_id"))
+//    @JoinColumn(name="countryId", foreignKey = @ForeignKey(name="FK_Address_country_id"))
     private Country country;
 
     private int unitNumber;
@@ -31,8 +31,6 @@ public class Address {
     private String city;
 
     private int postalCode;
-
-    private int country_id;
 
 }
 

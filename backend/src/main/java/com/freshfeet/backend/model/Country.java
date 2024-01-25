@@ -17,7 +17,7 @@ public class Country {
     private Integer countryId;
 
     @OneToMany(mappedBy = Address_.COUNTRY)
-    private Set<Address> Address;
+    private Set<Address> address;
 
     private String countryName;
 
@@ -27,5 +27,9 @@ public class Country {
 
     public void setCountryName(String countryName){
         this.countryName = countryName;
+    }
+
+    public Set<Address> getAddress(){
+        return address;
     }
 }

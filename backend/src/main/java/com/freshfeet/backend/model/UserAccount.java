@@ -60,6 +60,10 @@ public class UserAccount {
         this.password = password;
     }
 
+    public List<UserAddress> getUserAddresses(){
+        return userAddresses;
+    }
+
     public byte[] getDisplayPic(){
         return this.displayPic;
     }

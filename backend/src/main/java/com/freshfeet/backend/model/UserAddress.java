@@ -16,7 +16,7 @@ public class UserAddress {
     private Long id;
 
     @ManyToOne(fetch=LAZY)
-    @JoinColumn(name="user_id", foreignKey = @ForeignKey(name="user_id")) //foreign key in UserAddressTable
+//    @JoinColumn(name="userId", foreignKey = @ForeignKey(name="test")) //foreignkey contraint does not change the name on the table itself.
     private UserAccount userAccount;
 
     @ManyToOne(fetch=LAZY)
