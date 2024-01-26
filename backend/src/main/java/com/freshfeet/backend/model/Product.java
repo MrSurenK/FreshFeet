@@ -19,4 +19,26 @@ public class Product {
 
     private String productImage;
 
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+    public Long getProductId(){
+        return this.productId;
+    }
+
+
+
+    public String getProductImage(){
+        return this.productImage;
+    }
+
+    public void setProductImage(String productImage){
+        this.productImage = productImage;
+    }
+
 }
