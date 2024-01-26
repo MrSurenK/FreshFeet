@@ -3,13 +3,14 @@ package com.freshfeet.backend.model;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
+import java.util.Set;
+
 @Entity
 public class Product {
-
+//Fields
     @Id
     @GeneratedValue
     private Long productId;
-
 
     private String name;
 
@@ -20,6 +21,13 @@ public class Product {
     private String productImage;
 
 
+    @OneToMany(mappedBy = ProductItem_.PRODUCT)
+    private Set<ProductItem> productSKU;
+
+    //Setters and Getters
+    public Long getProductId(){
+        return this.productId;
+    }
     public String getName(){
         return this.name;
     }
@@ -27,11 +35,14 @@ public class Product {
     public void setName(String name){
         this.name = name;
     }
-    public Long getProductId(){
-        return this.productId;
+
+    public String getDescription(){
+        return this.description;
     }
 
-
+    public void setDescription(String description){
+        this.description = description;
+    }
 
     public String getProductImage(){
         return this.productImage;
@@ -40,5 +51,11 @@ public class Product {
     public void setProductImage(String productImage){
         this.productImage = productImage;
     }
+
+    public Set<ProductItem> getProductSKU(){
+        return productSKU;
+    }
+
+
 
 }

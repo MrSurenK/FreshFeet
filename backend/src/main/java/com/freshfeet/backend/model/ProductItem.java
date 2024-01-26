@@ -1,9 +1,6 @@
 package com.freshfeet.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 import java.math.BigDecimal;
@@ -11,16 +8,44 @@ import java.math.BigDecimal;
 @Entity
 public class ProductItem {
 
-//    @Id
-//    @GeneratedValue
-//    private Integer id;
-
+    // Fields
     @Id
-    private String SKU; // SKU is the natural id for product item table
+    private String Sku; // SKU is the natural id for product item table
 
     private Integer qtyInStock;
 
     @Column(precision=8, scale=2 )
     private BigDecimal price;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="product_id") //Foreign Key name
+    private Product product;
+
+
+    //Setters and Getters
+    public String getSku(){
+        return this.Sku;
+    }
+
+    public void setSku(String Sku){
+        this.Sku = Sku;
+    }
+
+    public Integer getQtyInStock(){
+        return this.qtyInStock;
+    }
+
+    public void setQtyInStock(Integer qtyInStock){
+        this.qtyInStock = qtyInStock;
+    }
+
+    public BigDecimal getPrice(){
+        return this.price;
+    }
+
+    public void setPrice(BigDecimal price){
+        this.price = price;
+    }
+
 
 }
