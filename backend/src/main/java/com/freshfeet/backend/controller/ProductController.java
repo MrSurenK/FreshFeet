@@ -20,6 +20,7 @@ public class ProductController {
     private StorageService storageService;
 
 
+    // Just a test controller. Refactor when implementing (File stored in folder and path in database)
     @PostMapping(path = "add")
     public @ResponseBody String addNewProduct(@RequestParam MultipartFile file, @RequestParam String name) throws IOException {
         Product n = new Product();

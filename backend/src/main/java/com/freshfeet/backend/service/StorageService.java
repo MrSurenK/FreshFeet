@@ -78,6 +78,7 @@ public class StorageService {
     }
 
 
+    // Refactor to throw error incase smthin is wrong
     public String uploadProductImage(MultipartFile file) throws IOException {
 
         if (!file.isEmpty()) {
