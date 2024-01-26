@@ -17,4 +17,6 @@ public class Product {
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
+    private String productImage;
+
 }
