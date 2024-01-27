@@ -21,7 +21,7 @@ public class Product {
     private String productImage;
 
 
-    @OneToMany(mappedBy = ProductItem_.PRODUCT)
+    @OneToMany(mappedBy = ProductItem_.PRODUCT) //(Mapped by refers to the owning side) and this is the inverse side
     private Set<ProductItem> productSKU;
 
     //Setters and Getters
@@ -51,11 +51,12 @@ public class Product {
     public void setProductImage(String productImage){
         this.productImage = productImage;
     }
-
     public Set<ProductItem> getProductSKU(){
         return productSKU;
     }
 
-
+    public void setProductSKU(Set<ProductItem>productSKU){
+        this.productSKU = productSKU;
+    }
 
 }
