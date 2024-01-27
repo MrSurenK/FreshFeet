@@ -18,7 +18,7 @@ public class ProductItem {
     private BigDecimal price;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="product_id") //Foreign Key name (Owning side)
+    @JoinColumn(name="fk_product_id") //Foreign Key name (Owning side)
     private Product product;
 
 

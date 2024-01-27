@@ -59,4 +59,11 @@ public class Product {
         this.productSKU = productSKU;
     }
 
+    //Helper method to add the SKU to the product(many-side) entity
+    @Transient
+    public void addProductSku(ProductItem productSku){
+        this.productSKU.add(productSku);
+        productSku.setProduct(this);
+    }
+
 }
