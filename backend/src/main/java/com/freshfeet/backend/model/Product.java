@@ -57,15 +57,11 @@ public class Product {
         return productSKU;
     }
 
-    public void setProductSKU(Set<ProductItem>productSKU){
-        this.productSKU = productSKU;
-    }
-
     //Helper method to add the SKU to the product(many-side) entity
     // No need for remove productSku as the database will not be deleting records
     public void addProductSku(ProductItem productSku){
         this.productSKU.add(productSku);
-        productSku.setProduct(this);
+        productSku.setProduct(this); // This creates bi-directional relationship in the setter found in ProductItem
     }
 
 }
