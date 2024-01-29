@@ -3,7 +3,6 @@ package com.freshfeet.backend.model;
 import jakarta.persistence.*;
 
 
-import java.util.Set;
 
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;

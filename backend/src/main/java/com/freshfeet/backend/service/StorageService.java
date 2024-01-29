@@ -1,6 +1,5 @@
 package com.freshfeet.backend.service;
 
-import com.freshfeet.backend.model.Product;
 import com.freshfeet.backend.model.UserAccount;
 import com.freshfeet.backend.repository.ProductRepository;
 import com.freshfeet.backend.repository.UserAccountRepository;

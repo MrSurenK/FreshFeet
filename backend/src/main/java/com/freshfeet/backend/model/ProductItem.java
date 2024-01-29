@@ -1,7 +1,6 @@
 package com.freshfeet.backend.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.NaturalId;
 
 import java.math.BigDecimal;
 

@@ -5,7 +5,6 @@ import com.freshfeet.backend.repository.UserAccountRepository;
 import com.freshfeet.backend.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(path="test")

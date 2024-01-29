@@ -1,7 +1,6 @@
 package com.freshfeet.backend.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.util.Lazy;
 
 
 import java.util.Set;
