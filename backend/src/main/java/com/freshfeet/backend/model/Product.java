@@ -60,7 +60,7 @@ public class Product {
     }
 
     //Helper method to add the SKU to the product(many-side) entity
-    @Transient
+    // No need for remove productSku as the database will not be deleting records
     public void addProductSku(ProductItem productSku){
         this.productSKU.add(productSku);
         productSku.setProduct(this);

@@ -41,30 +41,30 @@ public class ProductController {
     }
 
 
-    @PostMapping(path = "ProductItem")
-    public @ResponseBody String addNewProductItem(@RequestParam String sku, @RequestParam BigDecimal price) {
-        ProductItem n = new ProductItem();
-        n.setSku(sku);
-        n.setPrice(price);
-        Product m = new Product();
-        m.addProductSku(sku);
+//@PostMapping(path = "ProductItem")
+//    public @ResponseBody String addNewProductItem(@RequestParam String sku, @RequestParam BigDecimal price) {
+//        ProductItem n = new ProductItem();
+//        n.setSku(sku);
+//        n.setPrice(price);
+//        Product m = new Product();
+//        m.addProductSku(sku);
+//
+//
+//        productItemRepository.save(n);
+//
+//        return "Saved Data";
+//
+//    }
 
 
-        productItemRepository.save(n);
-
-        return "Saved Data";
-
-    }
-
-
-    @PostMapping("/productItems")
-    public ProductItem createProductItem(@RequestBody ProductItem productItem, @RequestParam Long productId) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
-
-        productItem.setProduct(product);
-        return productItemRepository.save(productItem);
-    }
+//    @PostMapping("/productItems")
+//    public ProductItem createProductItem(@RequestBody ProductItem productItem, @RequestParam Long productId) {
+//        Product product = productRepository.findById(productId)
+//                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+//
+//        productItem.setProduct(product);
+//        return productItemRepository.save(productItem);
+//    }
 
 }
 
