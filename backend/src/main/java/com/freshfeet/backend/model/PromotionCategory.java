@@ -22,6 +22,10 @@ public class PromotionCategory {
     @JoinColumn(name="fk_promotion_id")
     private Promotion promotionId;
 
+//    @ManyToOne(fetch=LAZY)
+//    @JoinColumn(name="fk_product_id")
+//    private Product product;
+
 
     //Setters and Getters
     public Long id(){

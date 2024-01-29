@@ -23,6 +23,9 @@ public class Product {
     @OneToMany(mappedBy = ProductItem_.PRODUCT) //(Mapped by refers to the owning side) and this is the inverse side
     private Set<ProductItem> productSKU;
 
+    @OneToMany(mappedBy = PromotionCategory_.PROMOTION_ID)
+    private Set<PromotionCategory> promotionId;
+
     //Setters and Getters
     public Long getProductId(){
         return this.productId;
