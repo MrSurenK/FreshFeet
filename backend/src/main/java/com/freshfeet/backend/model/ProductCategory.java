@@ -11,6 +11,8 @@ public class ProductCategory {
     @Id
     @GeneratedValue
     private Long productCatId;
-    
+
+
+
 
 }
