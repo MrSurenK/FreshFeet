@@ -24,6 +24,9 @@ public class ProductCategory {
     @OneToMany(mappedBy = ProductCategory_.PARENT_CATEGORY)
     private Set<ProductCategory> subCategory;
 
+    @OneToMany(mappedBy = PromotionCategory_.PRODUCT_CATEGORY)//Parent entity
+    private Set<PromotionCategory> promotionCategories;
+
 
     public Long getId(){
         return this.id;
@@ -45,11 +48,26 @@ public class ProductCategory {
         this.parentCategory = parentCategory;
     }
 
+
+    //BiDirectional Mapping for parent and sub-cat
+    public void addSubCategory(ProductCategory subCategory){
+        this.subCategory.add(subCategory);
+        subCategory.setParentCategory(this);
+    }
+
     public Set<ProductCategory>getSubCategory(){
         return subCategory;
     }
 
-    //BiDirectional Mapping for parent and sub-cat
 
+    //Bi-Directional Rls for parent and child(Product Category and Promotion Category)
+    public void addPromotionCategory(PromotionCategory promotionCategory){
+        this.promotionCategories.add(promotionCategory);
+        promotionCategory.setProductCategory(this);
+    }
+
+    public Set<PromotionCategory> getPromotionCategories(){
+        return this.promotionCategories;
+    }
 
 }

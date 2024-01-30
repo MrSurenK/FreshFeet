@@ -13,14 +13,13 @@ public class PromotionCategory {
     @GeneratedValue
     private Long id;
 
-//    @ManyToOne
-//    @join
-//    private Set<ProductCategory> productCat;
-
-
     @ManyToOne(fetch= LAZY)
     @JoinColumn(name="fk_promotion_id")
     private Promotion promotionId;
+
+    @ManyToOne(fetch=LAZY)
+    @JoinColumn(name="fk_category_id")//Child entity
+    private ProductCategory productCategory;
 
 
 
@@ -36,5 +35,11 @@ public class PromotionCategory {
     public void setPromotionId(Promotion promotionId){
         this.promotionId=promotionId;
     }
+
+    public ProductCategory getProductCategory(){
+        return this.productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory){this.productCategory=productCategory;}
 
 }
