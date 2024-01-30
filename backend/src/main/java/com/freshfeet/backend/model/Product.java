@@ -1,14 +1,17 @@
 package com.freshfeet.backend.model;
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.util.Set;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 public class Product {
 //Fields
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     private Long productId;
 
     private String name;

@@ -2,20 +2,22 @@ package com.freshfeet.backend.model;
 
 
 import jakarta.persistence.*;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.data.util.Lazy;
 
 import java.util.Set;
 
 import static jakarta.persistence.FetchType.LAZY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 public class ProductCategory {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    private String category;
+    private String categoryName;
 
     @ManyToOne(fetch=LAZY)
     @JoinColumn(name="fk_parent_cat")
@@ -27,17 +29,20 @@ public class ProductCategory {
     @OneToMany(mappedBy = PromotionCategory_.PRODUCT_CATEGORY)//Parent entity
     private Set<PromotionCategory> promotionCategories;
 
+    @OneToMany(mappedBy = Variation_.CATEGORY)
+    private Set<Variation> variations;
+
 
     public Long getId(){
         return this.id;
     }
 
-    public String getCategory(){
-        return this.category;
+    public String getCategoryName(){
+        return this.categoryName;
     }
 
-    public void setCategory(String category){
-        this.category = category;
+    public void setCategory(String categoryName){
+        this.categoryName = categoryName;
     }
 
     public ProductCategory getParentCategory(){
@@ -70,4 +75,17 @@ public class ProductCategory {
         return this.promotionCategories;
     }
 
+    public Set<Variation> getVariations(){
+        return this.variations;
+    }
+
+    //Bi-Directional Rls with variation
+    public void addVariation(Variation variation){
+        this.variations.add(variation);
+        variation.setCategory(this);
+    }
+
+
+
 }
+

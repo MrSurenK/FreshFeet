@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 
 
 import static jakarta.persistence.FetchType.LAZY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 
 @Entity
 public class PromotionCategory {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @ManyToOne(fetch= LAZY)

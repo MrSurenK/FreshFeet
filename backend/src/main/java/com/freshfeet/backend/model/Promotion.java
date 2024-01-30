@@ -1,17 +1,20 @@
 package com.freshfeet.backend.model;
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 
 @Entity
 public class Promotion {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private String promoTitle;
