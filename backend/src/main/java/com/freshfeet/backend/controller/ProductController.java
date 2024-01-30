@@ -33,7 +33,7 @@ public class ProductController {
     public @ResponseBody String addNewProduct(@RequestBody Set<ProductItem> sku, @RequestBody String name) {
         Product n = new Product();
         n.setName(name);
-        n.setProductSKU(sku);
+//        n.setProductSKU(sku);
 //        n.setProductImage(storageService.uploadProductImage(file));
         productRepository.save(n);
 
