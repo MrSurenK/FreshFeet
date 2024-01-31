@@ -16,6 +16,10 @@ public class ProductConfiguration {
     @JoinColumn(name="fk_variation_option_id")
     private VariationOption variationOption;
 
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name="fk_product_item_id")
+    private ProductItem productItem;
+
 
 
     //Setters and Getters
@@ -31,5 +35,11 @@ public class ProductConfiguration {
         this.variationOption = variationOption;
     }
 
+    public ProductItem getProductItem(){
+        return this.productItem;
+    }
+    public void setProductItem(ProductItem productItem){
+        this.productItem = productItem;
+    }
 
 }

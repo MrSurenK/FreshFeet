@@ -3,6 +3,7 @@ package com.freshfeet.backend.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 public class ProductItem {
@@ -20,7 +21,8 @@ public class ProductItem {
     @JoinColumn(name="fk_product_id") //Foreign Key name (Owning side)
     private Product product;
 
-    private
+    @OneToMany(mappedBy = ProductConfiguration_.PRODUCT_ITEM)
+    private Set<ProductConfiguration> productConfigurations;
 
 
     //Setters and Getters
@@ -56,5 +58,8 @@ public class ProductItem {
         this.product = product;
     }
 
-
+    public void setProductConfigurations(ProductConfiguration productConfiguration){
+        this.productConfigurations.add(productConfiguration);
+        productConfiguration.setProductItem(this);
+    }
 }
