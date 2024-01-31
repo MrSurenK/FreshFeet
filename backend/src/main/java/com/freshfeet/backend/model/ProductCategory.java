@@ -32,6 +32,9 @@ public class ProductCategory {
     @OneToMany(mappedBy = Variation_.CATEGORY)
     private Set<Variation> variations;
 
+    @OneToMany(mappedBy = Product_.PRODUCT_CATEGORY)
+    private Set<Product> products;
+
 
     public Long getId(){
         return this.id;
@@ -83,6 +86,11 @@ public class ProductCategory {
     public void addVariation(Variation variation){
         this.variations.add(variation);
         variation.setCategory(this);
+    }
+
+    public void setProducts(Product product){
+        this.products.add(product);
+        product.setProductCategory(this);
     }
 
 

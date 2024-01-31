@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.util.Set;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -25,6 +26,9 @@ public class Product {
 
     @OneToMany(mappedBy = ProductItem_.PRODUCT) //(Mapped by refers to the owning side) and this is the inverse side
     private Set<ProductItem> productSKU;
+
+    @ManyToOne(fetch=LAZY)
+    private ProductCategory productCategory;
 
 
     //Setters and Getters
@@ -60,9 +64,16 @@ public class Product {
 
     //Helper method to add the SKU to the product(many-side) entity
     // No need for remove productSku as the database will not be deleting records
-    public void addProductSku(ProductItem productSku){
+    public void setProductSku(ProductItem productSku){
         this.productSKU.add(productSku);
         productSku.setProduct(this); // This creates bi-directional relationship in the setter found in ProductItem
     }
 
+    public ProductCategory getProductCategory(){
+        return this.productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory){
+        this.productCategory = productCategory;
+    }
 }

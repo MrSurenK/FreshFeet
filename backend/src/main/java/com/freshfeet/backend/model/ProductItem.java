@@ -58,8 +58,14 @@ public class ProductItem {
         this.product = product;
     }
 
+    public Set<ProductConfiguration> getProductConfigurations(){
+        return this.productConfigurations;
+    }
+
     public void setProductConfigurations(ProductConfiguration productConfiguration){
         this.productConfigurations.add(productConfiguration);
         productConfiguration.setProductItem(this);
     }
+
+
 }
