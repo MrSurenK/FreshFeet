@@ -20,6 +20,8 @@ public class ProductItem {
     @JoinColumn(name="fk_product_id") //Foreign Key name (Owning side)
     private Product product;
 
+    private
+
 
     //Setters and Getters
     public String getSku(){
