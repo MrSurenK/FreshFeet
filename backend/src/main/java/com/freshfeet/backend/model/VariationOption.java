@@ -1,9 +1,6 @@
 package com.freshfeet.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
@@ -18,6 +15,10 @@ public class VariationOption {
 
     private String value; //Value can be a shirt size or shoe size or colour
 
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name="fk_variation_id")
+    private Variation variation;
+
     //Getters and Setters
     public Long getId(){
         return this.id;
@@ -31,8 +32,12 @@ public class VariationOption {
         this.value = value;
     }
 
-
-
+    public Variation getVariation(){
+        return this.variation;
+    }
+    public void setVariation(Variation variation){
+        this.variation = variation;
+    }
 
 
 }
