@@ -92,8 +92,5 @@ public class ProductCategory {
         this.products.add(product);
         product.setProductCategory(this);
     }
-
-
-
 }
 
