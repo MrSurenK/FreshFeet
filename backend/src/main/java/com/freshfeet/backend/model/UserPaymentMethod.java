@@ -24,6 +24,10 @@ public class UserPaymentMethod {
     @JoinColumn(name="fk_user_id")
     private UserAccount userId;
 
+    @ManyToOne
+    @JoinColumn(name="fk_payment_type_id")
+    private PaymentType paymentType;
+
 
     //Setters and Getters
     public UUID getId(){
@@ -62,7 +66,14 @@ public class UserPaymentMethod {
         this.isDefault = isDefault;
     }
 
-    //Bi-Directional Setters and Getters
+    public PaymentType getPaymentType(){
+        return this.paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType){
+        this.paymentType = paymentType;
+    }
+
     public UserAccount getUserId() {
         return userId;
     }
@@ -70,6 +81,7 @@ public class UserPaymentMethod {
     public void setUserId(UserAccount userId){
         this.userId = userId;
     }
+
 
 }
 

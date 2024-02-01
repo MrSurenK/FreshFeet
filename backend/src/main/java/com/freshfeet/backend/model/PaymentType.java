@@ -1,9 +1,8 @@
 package com.freshfeet.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class PaymentType {
@@ -14,6 +13,9 @@ public class PaymentType {
 
 
     private String value; //GrabPay, CreditCard, Account Number etc...
+
+    @OneToMany(mappedBy = UserPaymentMethod_.PAYMENT_TYPE)
+    private Set<UserPaymentMethod> paymentMethods;
 
 
 //    Getters and Setters
@@ -27,6 +29,17 @@ public class PaymentType {
 
     public void setValue(String value){
         this.value = value;
+    }
+
+    public Set<UserPaymentMethod> getPaymentMethods(){
+        return this.paymentMethods;
+    }
+
+//    Bi-Directional Setters
+
+    public void setPaymentMethods(UserPaymentMethod paymentMethod){
+        this.paymentMethods.add(paymentMethod);
+        paymentMethod.setPaymentType(this);
     }
 
 }
