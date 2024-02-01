@@ -4,6 +4,8 @@ import com.freshfeet.backend.util.CustomOrderId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+
 @Entity
 public class ShopOrder {
 
@@ -11,6 +13,12 @@ public class ShopOrder {
     @Id
     @CustomOrderId(name="order_no", prefix = "order_")
     private String orderId;
+
+    private LocalDate orderDate;
+
+
+
+
 
 
 
