@@ -3,6 +3,7 @@ package com.freshfeet.backend.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -10,7 +11,7 @@ import static jakarta.persistence.FetchType.LAZY;
 public class UserPaymentMethod {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private UUID id;
 
     private String provider;
 
@@ -21,11 +22,11 @@ public class UserPaymentMethod {
     private boolean isDefault;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name="fk_user_id")
-    private String userId;
+    private UserAccount userId;
 
 
     //Setters and Getters
-    public Long getId(){
+    public UUID getId(){
         return this.id;
     }
 
@@ -62,7 +63,14 @@ public class UserPaymentMethod {
     }
 
     //Bi-Directional Setters and Getters
+    public UserAccount getUserId() {
+        return userId;
+    }
 
-
+    public void setUserId(UserAccount userId){
+        this.userId = userId;
+    }
 
 }
+
+

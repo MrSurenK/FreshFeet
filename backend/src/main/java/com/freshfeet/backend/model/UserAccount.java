@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
-
+import java.util.Set;
 
 
 @Entity
@@ -17,6 +17,9 @@ public class UserAccount {
 
     @OneToMany(mappedBy=UserAddress_.USER_ACCOUNT) // One user can store many addresses
     List<UserAddress> userAddresses;
+
+    @OneToMany(mappedBy = UserPaymentMethod_.USER_ID)
+    private Set<UserPaymentMethod> userPaymentMethods;
 
     private String name;
 
@@ -114,5 +117,12 @@ public class UserAccount {
         this.is_active = isActive;
     }
 
+    public Set<UserPaymentMethod> getUserPaymentMethods(){
+        return this.userPaymentMethods;
+    }
+    public void setUserPaymentMethods(UserPaymentMethod userPaymentMethod){
+        this.userPaymentMethods.add(userPaymentMethod);
+        userPaymentMethod.setUserId(this);
+    }
 
 }
