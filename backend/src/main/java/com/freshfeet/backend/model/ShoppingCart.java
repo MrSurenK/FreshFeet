@@ -1,6 +1,7 @@
 package com.freshfeet.backend.model;
 
 import jakarta.persistence.*;
+import org.apache.catalina.User;
 
 public class ShoppingCart {
     @Id
@@ -10,6 +11,10 @@ public class ShoppingCart {
     private String sessionId;
     @Enumerated(EnumType.STRING)
     private CartStatus status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fk_user_id")
+    private UserAccount userId;
 
     // Setters and Getters
     public Long getId(){
@@ -32,4 +37,12 @@ public class ShoppingCart {
         this.status = status;
     }
 
+    // Bi-Directional setters and getters
+    public UserAccount getUserId(){
+        return this.userId;
+    }
+
+    public void setUserId(UserAccount userId){
+        this.userId = userId;
+    }
 }

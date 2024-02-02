@@ -25,6 +25,9 @@ public class UserAccount {
     @OneToMany(mappedBy = ShopOrder_.USER_ID)
     private Set<ShopOrder> orders;
 
+    @OneToMany(mappedBy = ShoppingCart_.USER_ID)
+    private Set<ShoppingCart> carts;
+
     private String name;
 
 //    @Basic(optional = false)
@@ -137,6 +140,16 @@ public class UserAccount {
     public void setOrders(ShopOrder order){
         this.orders.add(order);
         order.setUserId(this);
+    }
+
+
+    public Set<ShoppingCart>getCarts(){
+        return this.carts;
+    }
+
+    public void setCarts(ShoppingCart cart){
+        this.carts.add(cart);
+        cart.setUserId(this);
     }
 
 }
