@@ -24,6 +24,13 @@ public class ShopOrder {
     @JoinColumn(name="fk_user_id")
     private UserAccount userId;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="shopping_cart_id")
+    private ShoppingCart shoppingCart;
+
+
+
+
 
 
 
@@ -53,6 +60,14 @@ public class ShopOrder {
 
     public void setUserId(UserAccount userId){
         this.userId = userId;
+    }
+
+    public ShoppingCart getShoppingCart(){
+        return this.shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart){
+        this.shoppingCart = shoppingCart;
     }
 
 

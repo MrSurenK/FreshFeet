@@ -21,6 +21,10 @@ public class ShoppingCart {
     @OneToMany(mappedBy = ShoppingCartItem_.SHOPPING_CART)
     private Set<ShoppingCartItem> shoppingCartItems;
 
+    @OneToOne(mappedBy = ShopOrder_.SHOPPING_CART,
+    fetch=FetchType.LAZY)
+    private ShopOrder shopOrder;
+
     // Setters and Getters
     public Long getId(){
         return this.id;
@@ -60,5 +64,14 @@ public class ShoppingCart {
         this.shoppingCartItems.add(shoppingCartItem);
         shoppingCartItem.setShoppingCart(this);
     }
+
+    public ShopOrder getShopOrder(){
+        return this.shopOrder;
+    }
+
+    public void setShopOrder(ShopOrder shopOrder){
+        this.shopOrder = shopOrder;
+    }
+
 }
 
