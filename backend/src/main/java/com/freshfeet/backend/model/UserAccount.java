@@ -2,6 +2,7 @@ package com.freshfeet.backend.model;
 
 import com.freshfeet.backend.util.CustomUserId;
 import jakarta.persistence.*;
+import org.springframework.aot.hint.SerializationHints;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,6 +21,9 @@ public class UserAccount {
 
     @OneToMany(mappedBy = UserPaymentMethod_.USER_ID)
     private Set<UserPaymentMethod> userPaymentMethods;
+
+    @OneToMany(mappedBy = ShopOrder_.USER_ID)
+    private Set<ShopOrder> orders;
 
     private String name;
 
@@ -117,12 +121,22 @@ public class UserAccount {
         this.is_active = isActive;
     }
 
+    // Bi-Directional Setters and Getters
     public Set<UserPaymentMethod> getUserPaymentMethods(){
         return this.userPaymentMethods;
     }
     public void setUserPaymentMethods(UserPaymentMethod userPaymentMethod){
         this.userPaymentMethods.add(userPaymentMethod);
         userPaymentMethod.setUserId(this);
+    }
+
+    public Set<ShopOrder>getOrders(){
+        return this.orders;
+    }
+
+    public void setOrders(ShopOrder order){
+        this.orders.add(order);
+        order.setUserId(this);
     }
 
 }

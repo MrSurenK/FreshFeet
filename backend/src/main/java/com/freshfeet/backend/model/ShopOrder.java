@@ -1,10 +1,8 @@
 package com.freshfeet.backend.model;
 
 import com.freshfeet.backend.util.CustomOrderId;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import org.springframework.cglib.core.Local;
+import jakarta.persistence.*;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,6 +19,12 @@ public class ShopOrder {
 
     @Column(precision = 8, scale= 2)
     private BigDecimal orderTotal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fk_user_id")
+    private UserAccount userId;
+
+
 
 
     //Setters and Getters
@@ -41,4 +45,15 @@ public class ShopOrder {
     public void setOrderTotal(BigDecimal orderTotal){
         this.orderTotal = orderTotal;
     }
+
+    // Bi-Directional setters and getters
+    public UserAccount getUserId(){
+        return this.userId;
+    }
+
+    public void setUserId(UserAccount userId){
+        this.userId = userId;
+    }
+
+
 }
