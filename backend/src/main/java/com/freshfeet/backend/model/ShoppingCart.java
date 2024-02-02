@@ -2,6 +2,8 @@ package com.freshfeet.backend.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class ShoppingCart {
     @Id
@@ -15,6 +17,9 @@ public class ShoppingCart {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fk_user_id")
     private UserAccount userId;
+
+    @OneToMany(mappedBy = ShoppingCartItem_.SHOPPING_CART)
+    private Set<ShoppingCartItem> shoppingCartItems;
 
     // Setters and Getters
     public Long getId(){
@@ -45,4 +50,15 @@ public class ShoppingCart {
     public void setUserId(UserAccount userId){
         this.userId = userId;
     }
+
+    //Bi-Directional relationships
+    public Set<ShoppingCartItem> getShoppingCartItems(){
+        return this.shoppingCartItems;
+    }
+
+    public void setShoppingCartItems(ShoppingCartItem shoppingCartItem){
+        this.shoppingCartItems.add(shoppingCartItem);
+        shoppingCartItem.setShoppingCart(this);
+    }
 }
+
