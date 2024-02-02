@@ -1,8 +1,8 @@
 package com.freshfeet.backend.model;
 
 import jakarta.persistence.*;
-import org.apache.catalina.User;
 
+@Entity
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
