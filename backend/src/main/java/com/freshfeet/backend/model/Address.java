@@ -19,6 +19,7 @@ public class Address {
 
     @ManyToOne(fetch=LAZY)
 //    @JoinColumn(name="countryId", foreignKey = @ForeignKey(name="FK_Address_country_id"))
+    @JoinColumn(name="fk_country_id")
     private Country country;
 
     @OneToMany(mappedBy = ShopOrder_.ADDRESS)
@@ -98,14 +99,14 @@ public class Address {
         this.country = country;
     }
 
+    public Set<ShopOrder> getShopOrders(){
+        return this.shopOrders;
+    }
 
-
-
-
-
-
-
-
+    public void setShopOrders(ShopOrder shopOrder){
+        this.shopOrders.add(shopOrder);
+        shopOrder.setAddress(this);
+    }
 
 }
 
