@@ -24,6 +24,9 @@ public class ShopOrder {
     @Column(precision = 8, scale= 2)
     private BigDecimal orderTotal;
 
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fk_user_id")
     private UserAccount userId;
@@ -70,6 +73,14 @@ public class ShopOrder {
 
     public void setOrderTotal(BigDecimal orderTotal){
         this.orderTotal = orderTotal;
+    }
+
+    public OrderStatus getOrderStatus(){
+        return this.orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus){
+        this.orderStatus = orderStatus;
     }
 
     // Bi-Directional setters and getters
