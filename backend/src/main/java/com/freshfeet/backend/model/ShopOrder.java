@@ -18,6 +18,9 @@ public class ShopOrder {
 
     private LocalDate orderDate;
 
+    @Column(precision = 6, scale = 2)
+    private BigDecimal shippingPrice; // Shipping price is itemized to preserve accuracy of price data
+
     @Column(precision = 8, scale= 2)
     private BigDecimal orderTotal;
 
@@ -38,6 +41,11 @@ public class ShopOrder {
     private Address address;
 
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="fk_shipping_method_id")
+    private ShippingMethod shippingMethod;
+
+
     //Setters and Getters
     public String getOrderId(){
         return this.orderId;
@@ -49,6 +57,13 @@ public class ShopOrder {
         this.orderDate = orderDate;
     }
 
+    public BigDecimal getShippingPrice(){
+        return this.shippingPrice;
+    }
+
+    public void setShippingPrice(BigDecimal shippingPrice){
+        this.shippingPrice = shippingPrice;
+    }
     public BigDecimal getOrderTotal(){
         return this.orderTotal;
     }
@@ -89,6 +104,17 @@ public class ShopOrder {
     public void setAddress(Address address){
         this.address = address;
     }
+
+
+    public ShippingMethod getShippingMethod(){
+        return this.shippingMethod;
+    }
+
+    public void setShippingMethod(ShippingMethod shippingMethod){
+        this.shippingMethod = shippingMethod;
+    }
+
+
 
 
 
