@@ -21,15 +21,91 @@ public class Address {
 //    @JoinColumn(name="countryId", foreignKey = @ForeignKey(name="FK_Address_country_id"))
     private Country country;
 
-    private int unitNumber;
+    @OneToMany(mappedBy = ShopOrder_.ADDRESS)
+    private Set<ShopOrder> shopOrders;
 
-    private int blockNumber;
+    private Integer unitNumber;
+
+    private Integer blockNumber;
 
     private String streetName;
 
     private String city;
 
-    private int postalCode;
+    private Long postalCode;
+
+    //Setters and Getters
+    public Long getAddressId(){
+        return this.addressId;
+    }
+
+    public Integer getUnitNumber(){
+        return  this.unitNumber;
+    }
+
+    public void setUnitNumber(Integer unitNumber){
+        this.unitNumber = unitNumber;
+    }
+
+    public Integer getBlockNumber(){
+        return this.blockNumber;
+    }
+
+    public void setBlockNumber(Integer blockNumber){
+        this.blockNumber = blockNumber;
+    }
+
+    public String getStreetName(){
+        return this.streetName;
+    }
+
+    public void setStreetName(String streetName){
+        this.streetName = streetName;
+    }
+
+    public String getCity(){
+        return this.city;
+    }
+
+    public void setCity(String city){
+        this.city = city;
+    }
+
+    public Long getPostalCode(){
+        return this.postalCode;
+    }
+
+    public void setPostalCode(Long postalCode){
+        this.postalCode = postalCode;
+    }
+
+
+    //Bidirectional setters and getters
+    public Set<UserAddress> getUserAddress(){
+        return this.userAddress;
+    }
+
+    public void setUserAddress(UserAddress userAddress){
+        this.userAddress.add(userAddress);
+        userAddress.setAddress(this);
+    }
+
+    public Country getCountry(){
+        return this.country;
+    }
+
+    public void setCountry(Country country){
+        this.country = country;
+    }
+
+
+
+
+
+
+
+
+
 
 }
 

@@ -3,6 +3,7 @@ package com.freshfeet.backend.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 import static jakarta.persistence.FetchType.LAZY;
@@ -27,6 +28,9 @@ public class UserPaymentMethod {
     @ManyToOne
     @JoinColumn(name="fk_payment_type_id")
     private PaymentType paymentType;
+
+    @OneToMany(mappedBy = ShopOrder_.USER_PAYMENT_METHOD)
+    private Set<ShopOrder> shopOrder;
 
 
     //Setters and Getters
@@ -81,6 +85,17 @@ public class UserPaymentMethod {
     public void setUserId(UserAccount userId){
         this.userId = userId;
     }
+
+    public Set<ShopOrder> getShopOrder(){
+        return this.shopOrder;
+    }
+
+    public void setShopOrder(ShopOrder shopOrder){
+        this.shopOrder.add(shopOrder);
+        shopOrder.setUserPaymentMethod(this);
+    }
+
+
 
 
 }

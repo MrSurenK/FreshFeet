@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class ShopOrder {
@@ -28,13 +29,13 @@ public class ShopOrder {
     @JoinColumn(name="shopping_cart_id")
     private ShoppingCart shoppingCart;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fk_payment_method_id")
+    private UserPaymentMethod userPaymentMethod;
 
-
-
-
-
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fk_address")
+    private Address address;
 
     //Setters and Getters
     public String getOrderId(){
@@ -71,6 +72,28 @@ public class ShopOrder {
     public void setShoppingCart(ShoppingCart shoppingCart){
         this.shoppingCart = shoppingCart;
     }
+
+    public UserPaymentMethod getUserPaymentMethod(){
+        return this.userPaymentMethod;
+    }
+
+    public void setUserPaymentMethod(UserPaymentMethod userPaymentMethod){
+        this.userPaymentMethod = userPaymentMethod;
+    }
+
+    public Address getAddress(){
+        return this.address;
+    }
+
+    public void setAddress(Address address){
+        this.address = address;
+    }
+
+
+
+
+
+
 
 
 }

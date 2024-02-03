@@ -32,4 +32,9 @@ public class Country {
     public Set<Address> getAddress(){
         return address;
     }
+
+    public void setAddress(Address address){
+        this.address.add(address);
+        address.setCountry(this);
+    }
 }
