@@ -37,6 +37,7 @@ public class ShopOrder {
     @JoinColumn(name="fk_address")
     private Address address;
 
+
     //Setters and Getters
     public String getOrderId(){
         return this.orderId;
@@ -88,6 +89,8 @@ public class ShopOrder {
     public void setAddress(Address address){
         this.address = address;
     }
+
+
 
 
 
