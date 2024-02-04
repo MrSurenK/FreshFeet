@@ -11,12 +11,14 @@ public class OrderLine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     private Integer quantity;
 
     @Column(precision = 8, scale = 2)
     private BigDecimal price;
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="")
+    private ShopOrder shopOrder;
 
 
     //Setters and Getters
@@ -40,7 +42,13 @@ public class OrderLine {
         this.price = price;
     }
 
+    public ShopOrder getShopOrder(){
+        return this.shopOrder;
+    }
 
+    public void setShopOrder(ShopOrder shopOrder){
+        this.shopOrder = shopOrder;
+    }
 
 
 

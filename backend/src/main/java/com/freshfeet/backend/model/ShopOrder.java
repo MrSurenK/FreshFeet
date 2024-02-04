@@ -2,6 +2,7 @@ package com.freshfeet.backend.model;
 
 import com.freshfeet.backend.util.CustomOrderId;
 import jakarta.persistence.*;
+import org.hibernate.query.Order;
 
 
 import java.math.BigDecimal;
@@ -47,6 +48,9 @@ public class ShopOrder {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="fk_shipping_method_id")
     private ShippingMethod shippingMethod;
+
+    @OneToMany(mappedBy = OrderLine_.SHOP_ORDER)
+    private Set<OrderLine> orderLine;
 
 
     //Setters and Getters
@@ -125,15 +129,13 @@ public class ShopOrder {
         this.shippingMethod = shippingMethod;
     }
 
+    public Set<OrderLine> getOrderLine(){
+        return this.orderLine;
+    }
 
-
-
-
-
-
-
-
-
-
+    public void setOrderLine(OrderLine orderLine){
+        this.orderLine.add(orderLine);
+        orderLine.setShopOrder(this);
+    }
 
 }
