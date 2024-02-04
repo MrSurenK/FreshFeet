@@ -3,6 +3,7 @@ package com.freshfeet.backend.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 public class OrderLine {
@@ -23,6 +24,9 @@ public class OrderLine {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fk_product_item_id")
     private ProductItem productItem;
+
+    @OneToMany(mappedBy = UserReview_.ORDER_LINE)
+    private Set<UserReview> userReviews;
 
 
     //Setters and Getters
@@ -60,6 +64,15 @@ public class OrderLine {
 
     public void setProductItem(ProductItem productItem){
         this.productItem = productItem;
+    }
+
+    public Set<UserReview> getUserReviews(){
+        return this.userReviews;
+    }
+
+    public void setUserReviews(UserReview userReview){
+        this.userReviews.add(userReview);
+        userReview.setOrderLine(this);
     }
 
 }

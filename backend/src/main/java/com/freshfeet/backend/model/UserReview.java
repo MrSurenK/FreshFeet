@@ -15,6 +15,10 @@ public class UserReview {
     @Column(columnDefinition = "LONGTEXT")
     private String comment;
 
+    @ManyToOne
+    @JoinColumn(name="fk_ordered_product_id")
+    private OrderLine orderLine;
+
 
     //Setters and Getters
     public Long getId(){
@@ -35,6 +39,14 @@ public class UserReview {
 
     public void setComment(String comment){
         this.comment = comment;
+    }
+
+    public OrderLine getOrderLine(){
+        return this.orderLine;
+    }
+
+    public void setOrderLine(OrderLine orderLine){
+        this.orderLine = orderLine;
     }
 
 
