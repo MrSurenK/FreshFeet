@@ -28,6 +28,9 @@ public class UserAccount {
     @OneToMany(mappedBy = ShoppingCart_.USER_ID)
     private Set<ShoppingCart> carts;
 
+    @OneToMany(mappedBy = UserReview_.USER_ACCOUNT)
+    private Set<UserReview> userReviews;
+
     private String name;
 
 //    @Basic(optional = false)
@@ -150,6 +153,15 @@ public class UserAccount {
     public void setCarts(ShoppingCart cart){
         this.carts.add(cart);
         cart.setUserId(this);
+    }
+
+    public Set<UserReview> getUserReviews(){
+        return this.userReviews;
+    }
+
+    public void setUserReviews(UserReview userReview){
+        this.userReviews.add(userReview);
+        userReview.setUserAccount(this);
     }
 
 }

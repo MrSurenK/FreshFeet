@@ -20,6 +20,11 @@ public class UserReview {
     private OrderLine orderLine;
 
 
+    @ManyToOne
+    @JoinColumn(name="fk_user_id")
+    private UserAccount userAccount;
+
+
     //Setters and Getters
     public Long getId(){
         return this.id;
@@ -49,6 +54,12 @@ public class UserReview {
         this.orderLine = orderLine;
     }
 
+    public UserAccount getUserAccount(){
+        return this.userAccount;
+    }
 
+    public void setUserAccount(UserAccount userAccount){
+        this.userAccount= userAccount;
+    }
 
 }
