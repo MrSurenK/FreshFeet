@@ -27,6 +27,9 @@ public class ProductItem {
     @OneToMany(mappedBy = ShoppingCartItem_.PRODUCT_ITEM)
     private Set<ShoppingCartItem> shoppingCartItem;
 
+    @OneToMany(mappedBy = OrderLine_.PRODUCT_ITEM)
+    private Set<OrderLine> orderLines;
+
 
     //Setters and Getters
     public String getSku(){
@@ -78,4 +81,15 @@ public class ProductItem {
         this.shoppingCartItem.add(shoppingCartItem);
         shoppingCartItem.setProductItem(this);
     }
+
+    public Set<OrderLine> getOrderLines(){
+        return this.orderLines;
+    }
+
+    public void setOrderLines(OrderLine orderLine){
+        this.orderLines.add(orderLine);
+        orderLine.setProductItem(this);
+    }
+
+
 }

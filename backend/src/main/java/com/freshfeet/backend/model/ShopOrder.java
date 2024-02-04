@@ -2,7 +2,7 @@ package com.freshfeet.backend.model;
 
 import com.freshfeet.backend.util.CustomOrderId;
 import jakarta.persistence.*;
-import org.hibernate.query.Order;
+
 
 
 import java.math.BigDecimal;

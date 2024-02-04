@@ -17,8 +17,12 @@ public class OrderLine {
     private BigDecimal price;
 
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="")
+    @JoinColumn(name="fk_shop_order_id")
     private ShopOrder shopOrder;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fk_product_item_id")
+    private ProductItem productItem;
 
 
     //Setters and Getters
@@ -50,6 +54,12 @@ public class OrderLine {
         this.shopOrder = shopOrder;
     }
 
+    public ProductItem getProductItem(){
+        return this.productItem;
+    }
 
+    public void setProductItem(ProductItem productItem){
+        this.productItem = productItem;
+    }
 
 }
