@@ -18,7 +18,7 @@ import java.util.Set;
 @RestController
 @RequestMapping(path="test")
 public class ProductController {
-    @Autowired
+    @Autowired //comment
     private ProductRepository productRepository;
 
     @Autowired
