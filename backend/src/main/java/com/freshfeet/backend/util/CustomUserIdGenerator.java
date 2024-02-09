@@ -31,9 +31,6 @@ public class CustomUserIdGenerator implements IdentifierGenerator {
             }
         }
 
-
-
-
 //      String sql = "SELECT MAX(user_id) FROM user_account";
 //      https://www.tutorialspoint.com/how-to-get-the-maximum-value-from-strings-with-integers-in-mysql
 //        This sql query ensures that always the max id will be returned as it only extracts the integers away from the prefix given

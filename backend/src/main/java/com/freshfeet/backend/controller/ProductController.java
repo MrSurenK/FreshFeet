@@ -1,18 +1,13 @@
 package com.freshfeet.backend.controller;
 
-
 import com.freshfeet.backend.model.Product;
 import com.freshfeet.backend.model.ProductItem;
 import com.freshfeet.backend.repository.ProductItemRepository;
 import com.freshfeet.backend.repository.ProductRepository;
 import com.freshfeet.backend.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Set;
 
 @RestController
