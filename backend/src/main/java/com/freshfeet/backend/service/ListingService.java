@@ -1,31 +1,22 @@
 package com.freshfeet.backend.service;
 
-
-import com.freshfeet.backend.model.ProductItem;
-import com.freshfeet.backend.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.freshfeet.backend.DTO.ProductFormDTO;
+import com.freshfeet.backend.repository.ProductItemRepository;
+import com.freshfeet.backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ListingService {
 
-    @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private ProductItem productItem;
+    private ProductItemRepository productItemRepository;
 
-    @Autowired
-    private ProductCategoryRepo productCategoryRepo;
 
-    @Autowired
-    private VariationRepository variationRepository;
+    public ProductFormDTO createListing() {
 
-    @Autowired
-    private VariationOptionRepository variationOptionRepository;
 
-    @Autowired
-    private ProductConfigurationRepository productConfigurationRepository;
 
+    }
 
 
 
