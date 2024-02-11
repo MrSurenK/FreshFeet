@@ -21,17 +21,15 @@ public class ListingService {
     private ProductFormDTOMapper mapper;
 
 
-    public void createListing(ProductFormDTO dto) {
+    public ProductFormDTO createListing(ProductFormDTO dto) {
         Product product = mapper.mapToProduct(dto);
         ProductItem item = mapper.mapToProductItem(dto,product);
 
         product = productRepository.save(product);
         item = productItemRepository.save(item);
 
+        return dto;
+
     }
-
-
-
-
 
 }

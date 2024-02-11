@@ -9,7 +9,7 @@ public record ProductFormDTO(
         String productName,
         ProductCategory productCategory,
         String description,
-        String productImage,
+//        String productImage,
         String SKU,
         BigDecimal price,
         Integer qtyInStock
