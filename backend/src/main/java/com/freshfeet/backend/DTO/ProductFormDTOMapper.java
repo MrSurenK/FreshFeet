@@ -28,7 +28,6 @@ public class ProductFormDTOMapper {
         Product product = new Product();
         product.setName(dto.productName());
         product.setDescription(dto.description());
-        product.setProductImage(dto.productImage());
         return product;
     }
 

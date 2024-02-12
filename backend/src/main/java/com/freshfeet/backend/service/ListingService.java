@@ -32,7 +32,7 @@ public class ListingService {
         String imgPath = storageService.uploadProductImage(productImage);
 
         Product product = mapper.mapToProduct(dto);
-        product.setProductImage(dto.productImage());
+        product.setProductImage(imgPath);
 
         ProductItem item = mapper.mapToProductItem(dto,product);
 
