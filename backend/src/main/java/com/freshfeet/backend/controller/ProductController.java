@@ -4,7 +4,6 @@ import com.freshfeet.backend.DTO.ProductFormDTO;
 import com.freshfeet.backend.service.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.config.annotation.web.oauth2.resourceserver.OAuth2ResourceServerSecurityMarker;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +19,8 @@ public class ProductController {
     @ResponseBody
     public ResponseEntity<Object> addListing(@RequestPart ProductFormDTO productForm,
                                              @RequestPart MultipartFile file
-                                     ) throws IOException { listingService.createListing(productForm, file);
-        return ResponseEntity.ok(productForm);
+                                     ) throws IOException { ProductFormDTO updatedDto = listingService.createListing(productForm, file);
+        return ResponseEntity.ok(updatedDto);
 
     }
-
 }

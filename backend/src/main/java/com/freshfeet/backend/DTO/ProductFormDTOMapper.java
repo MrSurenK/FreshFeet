@@ -11,12 +11,12 @@ public class ProductFormDTOMapper {
 
 
     //Map Entity fields to DTO
-    public ProductFormDTO mapToProductDTO(Product product, ProductItem productItem) {
+    public ProductFormDTO mapToProductDTO(Product product, ProductItem productItem, String imgPath) {
 
         return new ProductFormDTO(
                 product.getName(),
                 product.getDescription(),
-                product.getProductImage(),
+                imgPath,
                 productItem.getSku(),
                 productItem.getPrice(),
                 productItem.getQtyInStock()
@@ -28,10 +28,8 @@ public class ProductFormDTOMapper {
         Product product = new Product();
         product.setName(dto.productName());
         product.setDescription(dto.description());
-//        product.setProductImage(dto.productImage());
-
+        product.setProductImage(dto.productImage());
         return product;
-
     }
 
     //Map DTO to ProductItems Entity fields

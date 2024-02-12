@@ -32,15 +32,16 @@ public class ListingService {
         String imgPath = storageService.uploadProductImage(productImage);
 
         Product product = mapper.mapToProduct(dto);
-
-        product.setProductImage(imgPath);
+        product.setProductImage(dto.productImage());
 
         ProductItem item = mapper.mapToProductItem(dto,product);
 
+        ProductFormDTO updatedDto = mapper.mapToProductDTO(product, item, imgPath);
         product = productRepository.save(product);
         item = productItemRepository.save(item);
 
-        return dto;
+
+        return updatedDto;
 
     }
 
