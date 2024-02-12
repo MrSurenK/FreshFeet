@@ -3,9 +3,12 @@ package com.freshfeet.backend.controller;
 import com.freshfeet.backend.DTO.ProductFormDTO;
 import com.freshfeet.backend.service.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.oauth2.resourceserver.OAuth2ResourceServerSecurityMarker;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/products")
@@ -15,9 +18,11 @@ public class ProductController {
     private ListingService listingService;
     @PostMapping("/addProduct")
     @ResponseBody
-    public ProductFormDTO addListing(@RequestBody ProductFormDTO productForm
-                                     ){
-        return listingService.createListing(productForm);
+    public ResponseEntity<Object> addListing(@RequestPart ProductFormDTO productForm,
+                                             @RequestPart MultipartFile file
+                                     ) throws IOException { listingService.createListing(productForm, file);
+        return ResponseEntity.ok(productForm);
+
     }
 
 }

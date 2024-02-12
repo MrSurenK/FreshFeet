@@ -22,7 +22,7 @@ public class StorageService {
     @Autowired
     private ProductRepository productRepo;
 
-    private final String FOLDER_PATH = "/Users/suren/Projects/freshFeet/backend/src/main/resources/productImages/";
+    private final String FOLDER_PATH = "/freshFeet/backend/src/main/resources/productImages/";
 
 
     //Method to upload image

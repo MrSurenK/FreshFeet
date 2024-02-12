@@ -8,6 +8,9 @@ import com.freshfeet.backend.repository.ProductItemRepository;
 import com.freshfeet.backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class ListingService {
@@ -20,9 +23,18 @@ public class ListingService {
     @Autowired
     private ProductFormDTOMapper mapper;
 
+    @Autowired
+    private StorageService storageService;
 
-    public ProductFormDTO createListing(ProductFormDTO dto) {
+
+    public ProductFormDTO createListing(ProductFormDTO dto, MultipartFile productImage) throws IOException {
+
+        String imgPath = storageService.uploadProductImage(productImage);
+
         Product product = mapper.mapToProduct(dto);
+
+        product.setProductImage(imgPath);
+
         ProductItem item = mapper.mapToProductItem(dto,product);
 
         product = productRepository.save(product);
