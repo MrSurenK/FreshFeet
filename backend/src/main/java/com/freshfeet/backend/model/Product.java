@@ -23,6 +23,8 @@ public class Product {
 
     private String productImage;
 
+    private boolean isAvailable;
+
 
     @OneToMany(mappedBy = ProductItem_.PRODUCT) //(Mapped by refers to the owning side) and this is the inverse side
     private Set<ProductItem> productSKU;
@@ -58,6 +60,15 @@ public class Product {
     public void setProductImage(String productImage){
         this.productImage = productImage;
     }
+
+    public boolean getIsAvailable(){
+        return this.isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable){
+        this.isAvailable = isAvailable;
+    }
+
     public Set<ProductItem> getProductSKU(){
         return productSKU;
     }
