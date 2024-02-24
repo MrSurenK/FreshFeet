@@ -11,8 +11,8 @@ public record ProductFormDTO(
         String productImage,
         String SKU,
         BigDecimal price,
-        Integer qtyInStock,
-        Long variationOptionId
+        Integer qtyInStock
+//        Long variationOptionId
 ) {
 
 }
