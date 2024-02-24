@@ -36,7 +36,7 @@ public class ListingService {
 
         ProductItem item = mapper.mapToProductItem(dto,product);
 
-        ProductFormDTO updatedDto = mapper.mapToProductDTO(product, item, imgPath);
+        ProductFormDTO updatedDto = mapper.mapToProductDTO(product, item, variationOption, imgPath);
         product = productRepository.save(product);
         item = productItemRepository.save(item);
 

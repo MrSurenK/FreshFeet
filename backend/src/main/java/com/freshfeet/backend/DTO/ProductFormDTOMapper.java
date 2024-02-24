@@ -1,8 +1,7 @@
 package com.freshfeet.backend.DTO;
 
 
-import com.freshfeet.backend.model.Product;
-import com.freshfeet.backend.model.ProductItem;
+import com.freshfeet.backend.model.*;
 import org.springframework.stereotype.Component;
 
 
@@ -11,7 +10,7 @@ public class ProductFormDTOMapper {
 
 
     //Map Entity fields to DTO
-    public ProductFormDTO mapToProductDTO(Product product, ProductItem productItem, String imgPath) {
+    public ProductFormDTO mapToProductDTO(Product product, ProductItem productItem, ProductConfiguration productConfiguration, String imgPath) {
 
         return new ProductFormDTO(
                 product.getName(),
@@ -19,7 +18,8 @@ public class ProductFormDTOMapper {
                 imgPath,
                 productItem.getSku(),
                 productItem.getPrice(),
-                productItem.getQtyInStock()
+                productItem.getQtyInStock(),
+                productConfiguration.getVariationOption()
         );
     }
 
@@ -41,5 +41,6 @@ public class ProductFormDTOMapper {
 
         return productItem;
     }
+
 
 }
