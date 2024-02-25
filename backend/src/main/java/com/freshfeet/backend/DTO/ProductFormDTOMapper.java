@@ -55,7 +55,7 @@ public class ProductFormDTOMapper {
     }
 
     public List<ProductConfiguration> mapToProductConfiguration(ProductFormDTO dto){
-        List<ProductConfiguration> variations = new ArrayList<>();
+        List<ProductConfiguration> variations = new ArrayList<ProductConfiguration>();
         if (dto.variation1() != null){
             ProductConfiguration productConfiguration1 = new ProductConfiguration();
             productConfiguration1.setVariationOption(dto.variation1());
