@@ -7,8 +7,7 @@ import java.math.BigDecimal;
 
 // Record will automatically generate getters
 public record ProductFormDTO(
-        ProductCategory parentCategory,
-        String subCategory,
+        Long categoryId,
         String productName,
         String description,
         String productImage,

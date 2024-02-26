@@ -2,15 +2,22 @@ package com.freshfeet.backend.DTO;
 
 
 import com.freshfeet.backend.model.*;
+import com.freshfeet.backend.repository.ProductCategoryRepo;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Component
 public class ProductFormDTOMapper {
+
+    @Autowired
+    private ProductCategoryRepo productCategoryRepo;
 
 
     //Map Entity fields to DTO
@@ -21,8 +28,7 @@ public class ProductFormDTOMapper {
         VariationOption variation3 = options.size() > 2 ? options.get(2) : null;
 
         return new ProductFormDTO(
-                category.getParentCategory(),
-                category.getCategoryName(),
+                category.getId(),
                 product.getName(),
                 product.getDescription(),
                 imgPath,
@@ -40,6 +46,12 @@ public class ProductFormDTOMapper {
         Product product = new Product();
         product.setName(dto.productName());
         product.setDescription(dto.description());
+        // Check if product category id exists in product_category table before mapping it to Product instance
+        Long catCheck = dto.categoryId();
+        if (catCheck != null){
+            ProductCategory catName = productCategoryRepo.findById(catCheck).orElseThrow(() -> new EntityNotFoundException("ProductCategory not found with ID: " + catCheck));
+            product.setProductCategory(catName);
+        }
         return product;
     }
 
