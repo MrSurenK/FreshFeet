@@ -3,6 +3,7 @@ package com.freshfeet.backend.DTO;
 
 import com.freshfeet.backend.model.*;
 import com.freshfeet.backend.repository.ProductCategoryRepo;
+import com.freshfeet.backend.repository.ProductConfigurationRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
@@ -18,6 +19,9 @@ public class ProductFormDTOMapper {
 
     @Autowired
     private ProductCategoryRepo productCategoryRepo;
+
+    @Autowired
+    ProductConfigurationRepository productConfigurationRepository;
 
 
     //Map Entity fields to DTO
@@ -66,23 +70,34 @@ public class ProductFormDTOMapper {
         return productItem;
     }
 
-    public List<ProductConfiguration> mapToProductConfiguration(ProductFormDTO dto){
+    //ToDo: Refactor code so that variation option is first found and if not found created and linked to the appropriate variation table before being added to product configuration
+    public List<ProductConfiguration> mapToProductConfiguration(ProductFormDTO dto, ProductItem productItem){
         List<ProductConfiguration> variations = new ArrayList<ProductConfiguration>();
+
         if (dto.variation1() != null){
             ProductConfiguration productConfiguration1 = new ProductConfiguration();
             productConfiguration1.setVariationOption(dto.variation1());
+            productConfiguration1.setProductItem(productItem);
             variations.add(productConfiguration1);
+
         }
         if (dto.variation2() != null){
             ProductConfiguration productConfiguration2 = new ProductConfiguration();
             productConfiguration2.setVariationOption(dto.variation2());
+            productConfiguration2.setProductItem(productItem);
             variations.add(productConfiguration2);
         }
         if (dto.variation3() != null){
             ProductConfiguration productConfiguration3 = new ProductConfiguration();
             productConfiguration3.setVariationOption(dto.variation3());
+            productConfiguration3.setProductItem(productItem);
             variations.add(productConfiguration3);
         }
+
+        for (ProductConfiguration config: variations){
+            productConfigurationRepository.save(config);
+        }
+
         return variations;
 
     }
