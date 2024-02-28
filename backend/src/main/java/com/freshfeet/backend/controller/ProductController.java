@@ -23,12 +23,6 @@ public class ProductController {
     public ResponseEntity<Object> addListing(@RequestPart ProductFormDTO productForm,
                                              @RequestPart MultipartFile file
                                      ) throws IOException {
-        if (file.isEmpty()){
-           throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Missing product image!");
-        } else {
-            ProductFormDTO updatedDto = listingService.createListing(productForm, file);
-            return ResponseEntity.status(HttpStatus.OK).body("Product has been added!");
         }
     }
-}
 
