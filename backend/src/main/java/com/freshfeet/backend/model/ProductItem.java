@@ -17,6 +17,8 @@ public class ProductItem {
     @Column(precision=8, scale=2 )
     private BigDecimal price;
 
+    private String productImage;
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="fk_product_id") //Foreign Key name (Owning side)
     private Product product;
@@ -55,6 +57,10 @@ public class ProductItem {
     public void setPrice(BigDecimal price){
         this.price = price;
     }
+
+    public String getProductImage(){return this.productImage;}
+
+    public void setProductImage(String productImage){this.productImage = productImage;}
 
     public Product getProduct(){
         return this.product;
