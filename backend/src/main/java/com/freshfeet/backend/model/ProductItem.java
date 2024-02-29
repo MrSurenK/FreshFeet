@@ -19,6 +19,8 @@ public class ProductItem {
 
     private String productImage;
 
+    private Boolean isAvailable;
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="fk_product_id") //Foreign Key name (Owning side)
     private Product product;
@@ -65,6 +67,10 @@ public class ProductItem {
     public Product getProduct(){
         return this.product;
     }
+
+    public Boolean getIsAvailable(){return this.isAvailable; }
+
+    public void setIsAvailable(Boolean isAvailable){this.isAvailable = isAvailable;}
 
     public void setProduct(Product product){
         this.product = product;
