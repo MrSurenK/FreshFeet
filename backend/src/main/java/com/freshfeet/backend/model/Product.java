@@ -21,16 +21,14 @@ public class Product {
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
-
+    @Column(columnDefinition = "boolean default false")
     private boolean isDiscontinued;
-
 
     @OneToMany(mappedBy = ProductItem_.PRODUCT) //(Mapped by refers to the owning side) and this is the inverse side
     private Set<ProductItem> productSKU;
 
     @ManyToOne(fetch=LAZY)
     private ProductCategory productCategory;
-
 
     //Setters and Getters
     public Long getProductId(){

@@ -19,6 +19,7 @@ public class ProductItem {
 
     private String productImage;
 
+    @Column(columnDefinition = "boolean default true")
     private Boolean isAvailable;
 
     @ManyToOne(fetch=FetchType.LAZY)
@@ -102,6 +103,5 @@ public class ProductItem {
         this.orderLines.add(orderLine);
         orderLine.setProductItem(this);
     }
-
 
 }

@@ -7,15 +7,15 @@ import java.math.BigDecimal;
 
 // Record will automatically generate getters
 public record ProductFormDTO(
-        Long categoryId,
+        ProductCategory categoryId,
         String productName,
         String description,
-        String productImage,
         String SKU,
+        String productImage,
         //Can have up to 3 variations for each product
-        VariationOption variation1,
-        VariationOption variation2,
-        VariationOption variation3,
+        VariationOption firstVariation,
+        VariationOption secondVariation,
+        VariationOption thirdVariation,
         BigDecimal price,
         Integer qtyInStock
 ) {
