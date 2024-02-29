@@ -21,9 +21,8 @@ public class Product {
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
-    private String productImage;
 
-    private boolean isAvailable;
+    private boolean isDiscontinued;
 
 
     @OneToMany(mappedBy = ProductItem_.PRODUCT) //(Mapped by refers to the owning side) and this is the inverse side
@@ -53,20 +52,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getProductImage(){
-        return this.productImage;
+    public boolean getIsDiscontinued(){
+        return this.isDiscontinued;
     }
 
-    public void setProductImage(String productImage){
-        this.productImage = productImage;
-    }
-
-    public boolean getIsAvailable(){
-        return this.isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable){
-        this.isAvailable = isAvailable;
+    public void setIsDiscontinued(boolean isAvailable){
+        this.isDiscontinued = isAvailable;
     }
 
     public Set<ProductItem> getProductSKU(){
