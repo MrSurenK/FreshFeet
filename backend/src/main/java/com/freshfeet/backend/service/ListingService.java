@@ -58,7 +58,11 @@ public class ListingService {
         if (productName == null) {
             if (productCategoryRepo.findById(checkCat).isPresent()) {
                 Product createProduct = mapper.mapDtoToProduct(productFormDTO);
-                productRepository.save(createProduct);
+                try {
+                    productRepository.save(createProduct);
+                } catch (Exception e){
+                    throw new RuntimeException("Error while saving the product: " + e.getMessage());
+                }
             } else {
                 throw new IllegalArgumentException("Category with ID" + checkCat + "not found");
             }
@@ -69,7 +73,14 @@ public class ListingService {
         /*
         Step 2: Map to product Item entity and save to repository. Also deserialize file path to String and
         save to entity object.
+        - Ensure that no duplicate SKUs and as such same object are created
+        - Ensure that SKU keyed in DTO is a valid format
+        - Ensure that
          */
+
+
+
+
 
         //Step 3: Map to ProductConfiguration and save to repository.
 
