@@ -4,7 +4,6 @@ package com.freshfeet.backend.service;
 import com.freshfeet.backend.DTO.ProductFormDTO;
 import com.freshfeet.backend.DTO.ProductFormDTOMapper;
 import com.freshfeet.backend.model.Product;
-import com.freshfeet.backend.model.ProductCategory;
 import com.freshfeet.backend.repository.ProductCategoryRepo;
 import com.freshfeet.backend.repository.ProductConfigurationRepository;
 import com.freshfeet.backend.repository.ProductItemRepository;
@@ -42,7 +41,7 @@ public class ListingService {
     // The method should use the repositories to save the information input in the DTO and create the entities
     // The method should also take in as parameters the dto object and the product image file location
 
-    public void createListing(ProductFormDTO productFormDTO, MultipartFile imageFile){
+    public void createListing(ProductFormDTO productFormDTO, MultipartFile imageFile) throws Exception {
 
         // High level objective: From the deserialized dto object access the fields and pass into the respective objects
 
@@ -59,7 +58,7 @@ public class ListingService {
             if (productCategoryRepo.findById(checkCat).isPresent()) {
                 Product createProduct = mapper.mapDtoToProduct(productFormDTO);
                 try {
-                    productRepository.save(createProduct);
+                     productRepository.save(createProduct);
                 } catch (Exception e){
                     throw new RuntimeException("Error while saving the product: " + e.getMessage());
                 }
@@ -71,12 +70,29 @@ public class ListingService {
         }
 
         /*
-        Step 2: Map to product Item entity and save to repository. Also deserialize file path to String and
+        Step 2: Map to product item entity and save to repository. Also deserialize file path to String and
         save to entity object.
-        - Ensure that no duplicate SKUs and as such same object are created
-        - Ensure that SKU keyed in DTO is a valid format
-        - Ensure that
+        - Ensure that no duplicate SKUs and as such same object are created (done)
+        - Check if product exists (done)
+        - Ensure that SKU keyed in DTO is a valid format (regex) and is not a duplicate
+         https://www.youtube.com/watch?v=sCuOJ8uadOg
+        - Ensure that price is not negative
+        - Ensure image location is converted as a string and set into the entity instance
          */
+        String checkSku = productFormDTO.sku();
+        boolean skuExistence = productItemRepository.findById(checkSku).isPresent();
+        if (skuExistence){
+            throw new Exception("This SKU already exists!");
+        }
+
+        Product createdProduct = productRepository.findByName(productFormDTO.productName());
+
+        if(createdProduct != null){
+            return;
+        } else {
+            throw new Exception("Product model does not exist");
+        }
+
 
 
 
