@@ -4,7 +4,9 @@ package com.freshfeet.backend.service;
 import com.freshfeet.backend.DTO.ProductFormDTO;
 import com.freshfeet.backend.DTO.ProductFormDTOMapper;
 import com.freshfeet.backend.model.Product;
+import com.freshfeet.backend.model.ProductConfiguration;
 import com.freshfeet.backend.model.ProductItem;
+import com.freshfeet.backend.model.VariationOption;
 import com.freshfeet.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,8 +40,11 @@ public class ListingService {
     @Autowired
     private ProductConfigurationRepository productConfigurationRepository;
 
-        @Autowired
+    @Autowired
     private VariationRepository variationRepository;
+
+    @Autowired
+    private VariationOptionRepository variationOptionRepository;
 
     @Autowired
     private StorageService storageService;
@@ -88,6 +94,7 @@ public class ListingService {
         - Ensure image location is converted as a string and set into the entity instance (done)
          */
         String checkSku = productFormDTO.sku();
+        String sku = null;
         boolean skuExistence = productItemRepository.findById(checkSku).isPresent();
         if (skuExistence){
             throw new Exception("This SKU already exists!");
@@ -115,18 +122,29 @@ public class ListingService {
         // if all the conditions above are met then save the productItem entity
         try {
             productItemRepository.save(createProductItem);
+            sku = createProductItem.getSku();
         } catch (Exception e){
             throw new RuntimeException("Error while saving the product item: " + e.getMessage());
         }
 
         /*Step 3: Map to ProductConfiguration and save to repository.
-            - Get the id of the productItem created above
+            - Get the id of the productItem created above (done)
             - For each variationOption create a new product Configuration instance and add the
               productItem id in it
             - Check if variation Options id exists in the array exists in table if it does not throw an exception
                 - Make sure to use id as there are similarly named variation options
                 - Check that category id found in product exists in variation entity
         */
+        List<VariationOption> options = productFormDTO.variations();
+        for(VariationOption option: options){
+            // Check if variation option exists in variation option entity
+            if (variationOptionRepository.findById(option.getId()).isPresent()){
+                if(variationOptionRepository.find){
+
+                }
+        }
+
+
 
 
 
