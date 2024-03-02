@@ -3,11 +3,9 @@ package com.freshfeet.backend.service;
 
 import com.freshfeet.backend.DTO.ProductFormDTO;
 import com.freshfeet.backend.DTO.ProductFormDTOMapper;
-import com.freshfeet.backend.model.Product;
-import com.freshfeet.backend.model.ProductConfiguration;
-import com.freshfeet.backend.model.ProductItem;
-import com.freshfeet.backend.model.VariationOption;
+import com.freshfeet.backend.model.*;
 import com.freshfeet.backend.repository.*;
+import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -15,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -94,7 +93,7 @@ public class ListingService {
         - Ensure image location is converted as a string and set into the entity instance (done)
          */
         String checkSku = productFormDTO.sku();
-        String sku = null;
+        ProductItem sku = null;
         boolean skuExistence = productItemRepository.findById(checkSku).isPresent();
         if (skuExistence){
             throw new Exception("This SKU already exists!");
@@ -122,7 +121,7 @@ public class ListingService {
         // if all the conditions above are met then save the productItem entity
         try {
             productItemRepository.save(createProductItem);
-            sku = createProductItem.getSku();
+            sku = createProductItem;
         } catch (Exception e){
             throw new RuntimeException("Error while saving the product item: " + e.getMessage());
         }
@@ -136,22 +135,32 @@ public class ListingService {
                 - Check that category id found in product exists in variation entity
         */
         List<VariationOption> options = productFormDTO.variations();
-        for(VariationOption option: options){
+        for(VariationOption option: options) {
             // Check if variation option exists in variation option entity
-            if (variationOptionRepository.findById(option.getId()).isPresent()){
-                if(variationOptionRepository.find){
-
+            Optional<VariationOption> existingOption = variationOptionRepository.findById(option.getId());
+            if (existingOption.isPresent()) {
+                VariationOption foundOption = existingOption.get();
+                Variation variation = foundOption.getVariation();
+                if (variation != null) {
+                    ProductCategory category = variation.getCategory();
+                    if (category != null && category.getId().equals(checkCat)) {
+                        ProductConfiguration newConfiguration = new ProductConfiguration();
+                        newConfiguration.setProductItem(sku);
+                        newConfiguration.setVariationOption(option);
+                        productConfigurationRepository.save(newConfiguration);
+                    } else {
+                        // The linkage is incorrect
+                        throw new IllegalArgumentException("Incorrect category linkage");
+                    }
+                } else {
+                    // The VariationOption is not linked to any Variation
+                    throw new IllegalArgumentException("Option not linked to any Variation");
                 }
+            } else {
+                // The VariationOption does not exist
+                throw new IllegalArgumentException("Option does not exist");
+            }
         }
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -173,7 +182,6 @@ public class ListingService {
         }
         return isBigDecimalValueNullOrZero;
     }
-
 
 
 }

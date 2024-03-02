@@ -53,18 +53,18 @@ public class ProductFormDTOMapper {
     }
 
 
-    //Map dto Variation fields to product configuration
-    public List<ProductConfiguration> mapDtoToProductConfiguration(ProductFormDTO dto, ProductItem productItem){
-        List<VariationOption> options = dto.variations();
-        List<ProductConfiguration> configurations = new ArrayList<>();
-        // Grab the instance for the product item and add variation option to it
-        for (VariationOption eachVariation : options) {
-            ProductConfiguration newConfiguration = new ProductConfiguration();
-            newConfiguration.setProductItem(productItem);
-            newConfiguration.setVariationOption(eachVariation);
-            configurations.add(newConfiguration);
-        }
-        return configurations;
+    //Map dto Variation fields to product configuration (Did not use in service layer)
+//    public List<ProductConfiguration> mapDtoToProductConfiguration(ProductFormDTO dto, ProductItem productItem){
+//        List<VariationOption> options = dto.variations();
+//        List<ProductConfiguration> configurations = new ArrayList<>();
+//        // Grab the instance for the product item and add variation option to it
+//        for (VariationOption eachVariation : options) {
+//            ProductConfiguration newConfiguration = new ProductConfiguration();
+//            newConfiguration.setProductItem(productItem);
+//            newConfiguration.setVariationOption(eachVariation);
+//            configurations.add(newConfiguration);
+//        }
+//        return configurations;
 
     }
 
