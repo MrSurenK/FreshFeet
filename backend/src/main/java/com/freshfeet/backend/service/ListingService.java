@@ -5,7 +5,6 @@ import com.freshfeet.backend.DTO.ProductFormDTO;
 import com.freshfeet.backend.DTO.ProductFormDTOMapper;
 import com.freshfeet.backend.model.*;
 import com.freshfeet.backend.repository.*;
-import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
