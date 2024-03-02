@@ -5,10 +5,7 @@ import com.freshfeet.backend.DTO.ProductFormDTO;
 import com.freshfeet.backend.DTO.ProductFormDTOMapper;
 import com.freshfeet.backend.model.Product;
 import com.freshfeet.backend.model.ProductItem;
-import com.freshfeet.backend.repository.ProductCategoryRepo;
-import com.freshfeet.backend.repository.ProductConfigurationRepository;
-import com.freshfeet.backend.repository.ProductItemRepository;
-import com.freshfeet.backend.repository.ProductRepository;
+import com.freshfeet.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -22,9 +19,9 @@ import java.util.regex.Pattern;
 @Service
 public class ListingService {
 
-    //Instantiate dto mapper, category repo, product repo, productItem repo, productConfiguration repo to save these entities into
-    //table
-
+    /*Instantiate dto mapper, category repo, product repo, productItem repo, productConfiguration repo to save these
+      entities into table
+    */
     @Autowired
     private ProductFormDTOMapper mapper;
 
@@ -37,12 +34,16 @@ public class ListingService {
     @Autowired
     private ProductItemRepository productItemRepository;
 
-
     @Autowired
     private ProductConfigurationRepository productConfigurationRepository;
 
+        @Autowired
+    private VariationRepository variationRepository;
+
     @Autowired
     private StorageService storageService;
+
+
 
 
     //Create a method that returns void to create listing in the controller of the app
@@ -124,8 +125,11 @@ public class ListingService {
               productItem id in it
             - Check if variation Options id exists in the array exists in table if it does not throw an exception
                 - Make sure to use id as there are similarly named variation options
-                - Check that id is linked to the right category as in Product and variation
+                - Check that category id found in product exists in variation entity
         */
+
+
+
 
 
 
