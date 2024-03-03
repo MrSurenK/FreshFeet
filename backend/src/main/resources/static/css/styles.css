@@ -32,12 +32,21 @@ ul{
     margin: 2em 2em 0 2em;
 }
 
-.menuItem{
-
-
+li{
+   margin-top:2em;
+   margin-bottom:2em;
 }
 
-.dropDown{
-
+a{
+    color:inherit;
+    text-decoration:none;
 }
+
+.dropdown{
+    margin-top:1.5em;
+    margin-bottom:1.5em;
+    display:block;
+}
+
+
 

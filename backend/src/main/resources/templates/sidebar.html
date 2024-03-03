@@ -21,15 +21,17 @@
     <!------Non Dropdown List------>
                 <li>
                     <div class="menuItem">
-                        <a href="#" ></a>
+                        <a href="#" >
                         <span>Dashboard</span>
+                        </a>
                     </div>
                 <li>
                     <div class="menuItem">
-                        <a href="#"></a>
+                        <a href="#">
                         <span>Inventory Management</span>
+                        </a>
                         <!--Submenus-->
-                    <div class="menuItem">
+                    <div class="dropdown">
                         <a href="#">Add Product</a>
                     </div>
                         <div class="dropdown">
@@ -43,5 +45,6 @@
             </ul>
         </div>
 </body>
+<script type="text/javascript" th:src="@{/javascript/sidebar.js}"></script>
 </html>
 
