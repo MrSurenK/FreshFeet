@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ProductController {
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("message", "Hello Thymeleaf!");
-        return "index"; // This will render index.html Thymeleaf template
+        model.addAttribute("message", "This is going to be a sidebar");
+        return "sidebar"; // This will render sidebar.html Thymeleaf template
     }
 
 }
