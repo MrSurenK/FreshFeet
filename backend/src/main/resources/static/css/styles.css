@@ -42,11 +42,29 @@ a{
     text-decoration:none;
 }
 
-.dropdown{
-    margin-top:1.5em;
-    margin-bottom:1.5em;
+.menuItem > a{
     display:block;
+    box-sizing: border-box;
+    width:100%;
+    padding:1em;
+    margin-bottom:0.5em;
+
+}
+
+.dropdown{
+    display: none;
+    margin:0;
+    padding:1em;
+}
+
+.dropdown:hover{
+    background-color:yellow;
+    color:black;
+    width:100%;
 }
 
 
-
+.menuItem > a:hover, .menuItem > a.active{
+    background-color:orange;
+    color:black;
+}
