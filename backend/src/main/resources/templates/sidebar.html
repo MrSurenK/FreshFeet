@@ -5,41 +5,43 @@
     <title>FreshFeet Admin</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" media="all"
-    href="/css/sidebar.css" th:href="@{/css/sidebar.css}"/>
+    href="/css/styles.css" th:href="@{/css/styles.css}"/>
 
 </head>
 <body>
-    <div class="test">
+    <div class="navbar">
     <!--------Logo-------->
             <a href="#">
             </a>
-            <div>yourLogo</div>
+            <div class="logo">
+                <img src="/logo/logo.png" th:src="@{/logo/logo.png}" alt="FreshFeet Logo">
+            </div>
     <!------ List -------->
             <ul >
     <!------Non Dropdown List------>
                 <li>
-                    <div>
+                    <div class="menuItem">
                         <a href="#" ></a>
                         <span>Dashboard</span>
                     </div>
                 <li>
-                    <div>
+                    <div class="menuItem">
                         <a href="#"></a>
                         <span>Inventory Management</span>
                         <!--Submenus-->
-                    <div>
+                    <div class="menuItem">
                         <a href="#">Add Product</a>
                     </div>
-                        <div>
+                        <div class="dropdown">
                             <a href="#">View All Products</a>
                         </div>
-                        <div>
+                        <div class="dropdown">
                             <a href="#">Manage Products</a>
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
-
 </body>
 </html>
+

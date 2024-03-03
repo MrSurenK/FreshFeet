@@ -1,0 +1,43 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif; /*Apple font on entire navbar*/
+    margin:0;
+    height:100%;
+    display:flex;
+}
+
+.navbar{
+    width:15vw;
+    height:100vh;
+    background-color:#0F394E;
+    color:white;
+    box-sizing: border-box;
+}
+
+.logo{
+    display:block;
+    text-align: center;
+    margin-top:-2em;
+    margin-bottom:-2em;
+
+}
+
+.logo img{
+    max-width:50%;
+    max-height:auto;
+}
+
+ul{
+    list-style-type: none;
+    padding-left:0;
+    margin: 2em 2em 0 2em;
+}
+
+.menuItem{
+
+
+}
+
+.dropDown{
+
+}
+
