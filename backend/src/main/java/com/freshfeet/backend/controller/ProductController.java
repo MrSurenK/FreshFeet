@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ProductController {
+    // Thymeleaf add product page
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("message", "This is going to be a sidebar");
-        return "sidebar"; // This will render sidebar.html Thymeleaf template
+    public String userForm(Model model){
+        model.addAttribute("message", "Add product page");
+        return "addProductForm";
     }
 
 }
