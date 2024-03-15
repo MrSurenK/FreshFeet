@@ -7,7 +7,21 @@
 <body>
     <div th:replace="fragments/sidebar"::sidebar></div>
     <h1>Add Product</h1>
-
+    <form onsubmit="return false;">
+        <label>Product Name</label><br>
+        <input type="text" id="productname" name="productname"><br>
+        <label>Description</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br>
+        <label>Category</label><br> <!-- This has to be a mapped drop-down menu from database -->
+        <label>SKU</label><br><!-- Format has to be controlled -->
+        <label>Upload Image</label><br>
+        <label>Variations</label><br> <!-- Allow for up to 3 variation options to be mapped from MySQL -->
+        <label>Price</label><br>
+        <input type="number" id="price" name="price"><br>
+        <label>Quantity</label><br>
+        <input type="number" id="qty" name="quantity"><br>
+        <button type="submit"> Submit </button>
+    </form>
 </body>
 </html>
 
