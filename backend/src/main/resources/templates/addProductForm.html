@@ -7,12 +7,19 @@
 <body>
     <div th:replace="fragments/sidebar"::sidebar></div>
     <h1>Add Product</h1>
-    <form onsubmit="return false;">
+    <form th:action="@{/product/add}" method="post">
         <label>Product Name</label><br>
         <input type="text" id="productname" name="productname"><br>
         <label>Description</label><br>
         <textarea id="description" name="description" rows="4" cols="50"></textarea><br>
-        <label>Category</label><br> <!-- This has to be a mapped drop-down menu from database -->
+        <label>Main Category</label><br> <!-- This has to be a mapped drop-down menu from database -->
+        <select id="mainCategory" th:field="${categories}" >
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:if="${category.parentCategory == null}"></option>
+        </select><br>
+        <label>Sub Category</label><br>
+        <select id="subCategory" th:field="*{categories}" disabled>
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:attr="data-main-category=${category.parentCategory?.id}" th:if="${category.parentCategory != null}"></option>
+        </select>
         <label>SKU</label><br><!-- Format has to be controlled -->
         <label>Upload Image</label><br>
         <label>Variations</label><br> <!-- Allow for up to 3 variation options to be mapped from MySQL -->
@@ -23,5 +30,6 @@
         <button type="submit"> Submit </button>
     </form>
 </body>
+<script type="text/javascript" th:src="@{/javascript/addProductForm.js}"></script>
 </html>
 
