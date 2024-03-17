@@ -13,13 +13,15 @@
         <label>Description</label><br>
         <textarea id="description" name="description" rows="4" cols="50"></textarea><br>
         <label>Main Category</label><br> <!-- This has to be a mapped drop-down menu from database -->
-        <select id="mainCategory" th:field="${categories}" >
+        <select id="mainCategory" th:field="${categories}">
+            <option value="">Select an option</option>
             <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:if="${category.parentCategory == null}"></option>
         </select><br>
         <label>Sub Category</label><br>
         <select id="subCategory" th:field="*{categories}" disabled>
-            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:attr="data-main-category=${category.parentCategory?.id}" th:if="${category.parentCategory != null}"></option>
-        </select>
+            <option value="">Select an option</option>
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:attr="data-parentCat={category.parentCategory}" th:if="${category.parentCategory != null}"></option>
+        </select><br>
         <label>SKU</label><br><!-- Format has to be controlled -->
         <label>Upload Image</label><br>
         <label>Variations</label><br> <!-- Allow for up to 3 variation options to be mapped from MySQL -->

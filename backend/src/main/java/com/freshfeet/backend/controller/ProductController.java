@@ -1,5 +1,7 @@
 package com.freshfeet.backend.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freshfeet.backend.model.ProductCategory;
 import com.freshfeet.backend.repository.ProductCategoryRepo;
 import com.freshfeet.backend.service.ListingService;
@@ -27,7 +29,7 @@ public class ProductController {
     }
     // Thymeleaf add product page
     @GetMapping("/product/add")
-    public String userForm(Model model){
+    public String userForm(Model model) throws JsonProcessingException {
         List<ProductCategory> categories = productCategoryRepo.findAll();
         model.addAttribute("categories", categories);
         return "addProductForm";
