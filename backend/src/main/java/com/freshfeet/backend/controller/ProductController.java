@@ -1,7 +1,6 @@
 package com.freshfeet.backend.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freshfeet.backend.model.ProductCategory;
 import com.freshfeet.backend.model.Variation;
 import com.freshfeet.backend.model.VariationOption;

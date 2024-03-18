@@ -32,7 +32,16 @@
         <input type="text" name="sku" value="SKU-" pattern="SKU-[A-Z]{4}[A-Z]{3}(\d{2}|[A-Z])" required><br>
         <label>Upload Image</label><br>
         <input type="file" id="productImg" name="productImage" accept="image/*"><br>
-        <label>Variations</label><br> <!-- Allow for up to 3 variation options to be mapped from MySQL -->
+        <label>Variations</label><br><!-- Allow for up to 3 variation options to be mapped from MySQL -->
+        <select id="variations" th:field="*{variations}">
+            <option value="">Select an option</option>
+            <option th:each="variation : ${variations}" th:value="${variation.id}" th:text="${variation.name}">  </option>
+        </select><br>
+        <label>Variation Options</label><br>
+        <select id="variation-options" th:field="*{variationOptions}">
+            <option value="">Select an option</option>
+            <option th:each="variationOption : ${variationOptions}" th:value="${variationOption.id}" th:text="${variationOption.value}"></option>
+        </select><br>
         <label>Price</label><br>
         <input type="number" id="price" name="price"><br>
         <label>Quantity</label><br>
