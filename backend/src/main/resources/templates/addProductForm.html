@@ -5,7 +5,7 @@
     <title>FreshFeet</title>
 </head>
 <body>
-    <div th:replace="fragments/sidebar"::sidebar></div>
+    <div th:replace="~{fragments/sidebar}"::sidebar></div>
     <h1>Add Product</h1>
     <form th:action="@{/product/add}" method="post">
         <label>Product Name</label><br>
@@ -19,8 +19,8 @@
         </select><br>
         <label>Sub Category</label><br>
         <select id="subCategory" th:field="*{categories}" disabled>
-            <option value="">Select an option</option>
-            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:attr="data-parentCat={category.parentCategory}" th:if="${category.parentCategory != null}"></option>
+             <option value="">Select an option</option>
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:attr="fk-data=${category.parentCategory.id}" th:if="${category.parentCategory != null}"></option>
         </select><br>
         <label>SKU</label><br><!-- Format has to be controlled -->
         <label>Upload Image</label><br>
