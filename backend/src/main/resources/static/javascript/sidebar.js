@@ -35,7 +35,7 @@ inventoryMenu.addEventListener("click",showHideSubMenu);
 */
 //Get the a tags from the menuItem classes
 const menuItems = document.querySelectorAll(".menuItem > a");
-console.log(menuItems);
+
 
 /*Add event listener to check if clicked on and if so add active
 class. If active class exists then remove active class.

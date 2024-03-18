@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>FreshFeet</title>
+    <link rel="stylesheet" type="text/css" media="all"
+    href="/css/form.css" th:href="@{/css/form.css}"/>
 </head>
 <body>
     <div th:replace="~{fragments/sidebar}"::sidebar></div>
+    <div>
+        <div id="header">
     <h1>Add Product</h1>
+            </div>
+    <div>
     <form th:action="@{/product/add}" method="post">
         <label>Product Name</label><br>
         <input type="text" id="productname" name="productname"><br>
@@ -22,8 +28,10 @@
              <option value="">Select an option</option>
             <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}" th:attr="fk-data=${category.parentCategory.id}" th:if="${category.parentCategory != null}"></option>
         </select><br>
-        <label>SKU</label><br><!-- Format has to be controlled -->
+        <label>SKU (SKU-[A-Z]{4}[A-Z]{3}(\d{2}|[A-Z]))</label><br><!-- Format has to be controlled -->
+        <input type="text" name="sku" value="SKU-" pattern="SKU-[A-Z]{4}[A-Z]{3}(\d{2}|[A-Z])" required><br>
         <label>Upload Image</label><br>
+        <input type="file" id="productImg" name="productImage" accept="image/*"><br>
         <label>Variations</label><br> <!-- Allow for up to 3 variation options to be mapped from MySQL -->
         <label>Price</label><br>
         <input type="number" id="price" name="price"><br>
@@ -31,6 +39,8 @@
         <input type="number" id="qty" name="quantity"><br>
         <button type="submit"> Submit </button>
     </form>
+    </div>
+    </div>
 </body>
 <script type="text/javascript" th:src="@{/javascript/addProductForm.js}"></script>
 </html>
